@@ -1,5 +1,5 @@
 export interface PaymentResultDto {
-    id: string;
+    id: number;
     status: string;
     amount: number;
     totalAmount: number;

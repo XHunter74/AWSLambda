@@ -27,6 +27,9 @@
                 "runtime": "nodejs20.x",
                 "payload": {
                     "json": {
+                        "headers": {
+                            "Content-Type": "application/json"
+                        },
                         "body": "{\"id\":127,\"amount\":75.63,\"currency\":\"USD\"}",
                         "pathParameters": {
                             "id": "abc"

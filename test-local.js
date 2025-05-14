@@ -9,6 +9,9 @@ const testData = {
 };
 
 const fakeEvent = {
+    headers: {
+        'Content-Type': 'application/json'
+    },
     body: JSON.stringify(testData),
     //   pathParameters: { id: 'abc' },
 };

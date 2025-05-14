@@ -1,20 +1,16 @@
-import { APIGatewayEvent, Context, APIGatewayProxyResult } from 'aws-lambda';
-import { PaymentDto } from './models/payment.dto';
+import { APIGatewayProxyHandler } from 'aws-lambda';
+import { PaymentDto, PaymentDtoSchema } from './models/payment.dto';
 import { PaymentResultDto } from './models/payment-result.dto';
+import middy from '@middy/core';
+import httpErrorHandler from '@middy/http-error-handler';
+import httpJsonBodyParser from '@middy/http-json-body-parser';
+import { validateBody } from './validators/body.validator';
+import { ensureJsonHeader } from './validators/headers.validator';
+import { errorResponder } from './validators/error-responder';
 
-export const handler = async (
-    event: APIGatewayEvent,
-    context: Context
-): Promise<APIGatewayProxyResult> => {
+const businessLogic: APIGatewayProxyHandler = async (event) => {
     console.log('Received event:', JSON.stringify(event, null, 2));
-    const data = event.body ? JSON.parse(event.body) as PaymentDto : null;
-
-    if (!data) {
-        return {
-            statusCode: 400,
-            body: JSON.stringify({ message: 'Invalid request' }),
-        };
-    }
+    const data = event.body as unknown as PaymentDto;
 
     const paymentResult = {} as PaymentResultDto;
     paymentResult.id = data.id;
@@ -31,3 +27,10 @@ export const handler = async (
         body: JSON.stringify(paymentResult),
     };
 };
+
+export const handler = middy(businessLogic)
+    .use(ensureJsonHeader())
+    .use(httpJsonBodyParser())
+    .use(validateBody<PaymentDto>(PaymentDtoSchema))
+    .use(errorResponder());
+

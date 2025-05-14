@@ -6,12 +6,20 @@
   "types": "dist/main.d.ts",
   "scripts": {
     "build": "tsc",
-    "package": "npm run build && 7z a -tzip function.zip dist"
+    "package": "npm run build && npm run bundle && 7z a -tzip function.zip dist node_modules",
+    "bundle": "esbuild --bundle src/main.ts --platform=node --target=node20 --format=cjs --outfile=dist/main.js"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.114",
     "@types/node": "^18.16.3",
+    "esbuild": "^0.25.4",
     "ts-node": "^10.9.2",
     "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "@middy/core": "^6.3.0",
+    "@middy/http-error-handler": "^6.3.0",
+    "@middy/http-json-body-parser": "^6.3.0",
+    "zod": "^3.24.4"
   }
 }
