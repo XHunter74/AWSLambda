@@ -1,0 +1,4 @@
+function.zip
+build-deploy.cmd
+dist/
+node_modules/
