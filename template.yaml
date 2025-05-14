@@ -1,0 +1,12 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+  SimpleLambdaTS:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: dist/main.handler
+      Runtime: nodejs20.x
+      CodeUri: .
+      Timeout: 10
+      MemorySize: 128

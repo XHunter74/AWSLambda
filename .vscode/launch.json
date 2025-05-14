@@ -1,0 +1,35 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Lambda Locally",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/test-local.js",
+            "preLaunchTask": "tsc: build - tsconfig.json",
+            "outFiles": [
+                "${workspaceFolder}/dist/**/*.js"
+            ],
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "name": "AWS: Debug SimpleLambdaTS",
+            "type": "aws-sam",
+            "request": "direct-invoke",
+            "invokeTarget": {
+                "target": "template",
+                "templatePath": "${workspaceFolder}/template.yaml",
+                "logicalId": "SimpleLambdaTS"
+            },
+            "lambda": {
+                "runtime": "nodejs20.x",
+                "payload": {},
+                "environmentVariables": {},
+                "debugPort": 9229
+            },
+            "preLaunchTask": "npm: build"
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "simple-lambda-ts",
+  "version": "1.0.0",
+  "description": "A simple AWS Lambda function in TypeScript",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "package": "npm run build && 7z a -tzip function.zip dist"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.114",
+    "@types/node": "^18.16.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^4.9.5"
+  }
+}
