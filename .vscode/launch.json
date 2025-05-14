@@ -25,7 +25,17 @@
             },
             "lambda": {
                 "runtime": "nodejs20.x",
-                "payload": {},
+                "payload": {
+                    "json": {
+                        "body": "{\"id\":127,\"amount\":75.63,\"currency\":\"USD\"}",
+                        "pathParameters": {
+                            "id": "abc"
+                        },
+                        "queryStringParameters": {
+                            "q": "test"
+                        }
+                    }
+                },
                 "environmentVariables": {},
                 "debugPort": 9229
             },

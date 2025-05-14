@@ -1,0 +1,5 @@
+{
+  "body": "{\"id\":127,\"amount\":75.63,\"currency\":\"USD\"}",
+  "pathParameters": { "id": "abc" },
+  "queryStringParameters": { "q": "test" }
+}
