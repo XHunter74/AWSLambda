@@ -2,7 +2,6 @@ import { APIGatewayProxyHandler } from 'aws-lambda';
 import { PaymentDto, PaymentDtoSchema } from './models/payment.dto';
 import { PaymentResultDto } from './models/payment-result.dto';
 import middy from '@middy/core';
-import httpErrorHandler from '@middy/http-error-handler';
 import httpJsonBodyParser from '@middy/http-json-body-parser';
 import { validateBody } from './validators/body.validator';
 import { ensureJsonHeader } from './validators/headers.validator';
